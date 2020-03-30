@@ -1,0 +1,10 @@
+{{ if .Values.environment }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "@helm.chart.name@.fullname" . }}
+  labels:
+  {{- include "@helm.chart.name@.labels" . | nindent 4 }}
+data:
+{{ toYaml .Values.environment | indent 2 }}
+  {{ end }}
